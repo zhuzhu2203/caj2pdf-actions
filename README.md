@@ -1,3 +1,24 @@
+# caj2pdf-actions
+#### 无需配置环境，使用Github Actions一键转换！  
+
+## 使用方法
+1. 下载caj文件到本地，改名为file.caj
+2. fork本项目
+3. 直接上传file.caj到你clone的仓库的根目录内
+4. 稍等片刻去Actions标签里面查收Output文件
+5. 解压Output.zip得到output.pdf即为所求
+
+## 说明
+1. fork的仓库无需用完删除，下次使用上传file.caj即可
+2. 由于fork的仓库是公开的，你上传的caj会被他人看到，请不要上传含有个人隐私的caj（不过你真有办法把自己的隐私写进caj？）
+3. 如果你真的不希望被别人看到你转换的caj，那就clone到本地然后自己开个新的私有仓库传上去，不过私有仓库Actions有限量
+4. 本项目是caj2pdf的第三方分支，如果转换失败了请去原仓库提issue，转换失败肯定不是我的锅
+
+
+
+------
+## 以下为原项目Readme
+------
 # caj2pdf
 
 ## Why
