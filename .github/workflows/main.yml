@@ -1,0 +1,25 @@
+name: caj2pdf
+on: push
+jobs:
+  AutoDownloaderProcess:
+    runs-on: windows-latest
+    steps:
+    - name: preload env cmd
+      shell: cmd
+      run: |
+       pip install pypdf2
+       curl https://mupdf.com/downloads/archive/mupdf-1.18.0-windows.zip -o mupdf.zip -L
+    - name: preload env ps
+      shell: powershell
+      run: |
+       Expand-Archive mupdf.zip -DestinationPath .\
+       move mupdf-1.18.0-windows\mutool.exe .\
+    - name: process caj
+      shell: cmd
+      run: |
+        python caj2pdf convert file.caj -o output.pdf
+    - name : Upload artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: Output
+        path: output.pdf
