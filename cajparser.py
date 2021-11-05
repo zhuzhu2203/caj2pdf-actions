@@ -1,5 +1,6 @@
 import os
 import struct
+import imagesize
 from shutil import copy
 from subprocess import check_output, STDOUT, CalledProcessError
 from utils import fnd, fnd_all, add_outlines, fnd_rvrs, fnd_unuse_no
@@ -326,7 +327,9 @@ class CAJParser(object):
                     image_list.append(None)
                     image_list.append(page_data.figures)
                 else:
-                    raise SystemExit("Image Count %d != %d" % (len(page_data.figures), images_per_page))
+                    print("Page %d, Image Count %d != %d" % (i+1, len(page_data.figures), images_per_page))
+                    image_list.append(None)
+                    image_list.append(page_data.figures[0:images_per_page])
             current_offset = page_data_offset + size_of_text_section
             for j in range(images_per_page):
                 caj.seek(current_offset)
@@ -380,7 +383,12 @@ class CAJParser(object):
                         0
                     )
                 elif (image_type[image_type_enum] == "JPEG"):
-                    (height, width) = struct.unpack(">HH", image_data[163:167])
+                    #(height, width) = struct.unpack(">HH", image_data[163:167])
+                    with open(".tmp.jpg", "wb") as f:
+                        f.write(image_data)
+                    (width, height) = imagesize.get(".tmp.jpg")
+                    os.remove(".tmp.jpg")
+
                     if (image_type_enum == 1):
                         # non-inverted JPEG Images
                         height = -height
