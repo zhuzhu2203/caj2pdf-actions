@@ -1,5 +1,6 @@
 # caj2pdf-actions
 #### 无需配置环境，使用Github Actions一键转换！  
+#### 搭配[ActionArtifacts.Workers](https://github.com/qinlili23333/ActionArtifacts.Workers)项目可以更方便的下载成品！  
 
 ## 使用方法
 1. 下载caj文件到本地，改名为file.caj
